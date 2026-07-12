@@ -54,7 +54,7 @@ def wait_for_window(window_title, timeout=30):
 
 # 1. Start the app in the background
 project_dir = "cs/Display_WinForms"
-process = subprocess.Popen(["powershell", "-Command", "dotnet run"], cwd=project_dir)
+process = subprocess.Popen(["powershell", "-Command", "dotnet run -- bounce-ball"], cwd=project_dir)
 
 # 2. Wait until the window exists (Change "Form1" to your actual WinForms Window Title)
 if wait_for_window("NAISENT ENVIRONMENT", timeout=45):
@@ -108,8 +108,9 @@ def listToText(list):
 
 # START THE MODEL'S TRAINING LOOP
 client.start()
+MAX_EPISODES = 5
 while True:
-    if amountOfEpisodes >= 120:
+    if amountOfEpisodes >= MAX_EPISODES:
         break
 
     # print("stepping")
@@ -143,6 +144,9 @@ while True:
 
     # time.sleep(2) # .05
 
-    client.proceed()
+    if amountOfEpisodes < MAX_EPISODES:
+        client.proceed()
+
+client.terminate()
 
 storage.write(structure.read())

@@ -16,7 +16,10 @@ public class EnvironmentForm : Form
 
     HashSet<Keys> activeInputs = new HashSet<Keys>();
 
-    BounceBallEnvironment environment;
+    BounceBallEnvironment _BounceBallEnvironment;
+    ShapeTestEnvironment _ShapeTestEnvironment;
+
+    string environmentType;
 
     float passedDeltaTime = 0;
 
@@ -28,14 +31,29 @@ public class EnvironmentForm : Form
 
     public DownSampler downSampler {get; private set;}
 
-    public EnvironmentForm()
+    public EnvironmentForm(string _environmentType)
     {
+        this.environmentType = _environmentType;
+
         smallPreview = new PreviewForm();
         smallPreview.Show();
 
         smallPreview.Text = "NAISENT EYES";
 
-        environment = new BounceBallEnvironment(this);
+        Console.WriteLine($"environment type: \"{this.environmentType}\"");
+        switch(this.environmentType)
+        {
+            case "bounce-ball":
+                this._BounceBallEnvironment = new BounceBallEnvironment(this);
+                break;
+            case "shape-test":
+                this._ShapeTestEnvironment = new ShapeTestEnvironment(this);
+                break;
+            default:
+                Console.WriteLine($"The Environment type wasn't expected: \"{this.environmentType}\"");
+                // Environment.FailFast();
+                break;
+        }
 
         Text = "NAISENT ENVIRONMENT";
         ClientSize = new Size(800, 600);
@@ -49,8 +67,18 @@ public class EnvironmentForm : Form
                 // environment.startTime = DateTime.Now;
                 return;
             }
+            
+            bool display = false;
+            switch(this.environmentType)
+            {
+                case "bounce-ball":
+                    display = this._BounceBallEnvironment.tickEnvironment(DELTA_TIME, activeInputs, passedDeltaTime);
+                    break;
+                case "shape-test":
+                    display = this._ShapeTestEnvironment.tickEnvironment(DELTA_TIME, activeInputs, passedDeltaTime);
+                    break;
+            }
 
-            bool display = environment.tickEnvironment(DELTA_TIME, activeInputs, passedDeltaTime);
             if (display)
             {
                 Invalidate(); // request redraw
@@ -88,11 +116,20 @@ public class EnvironmentForm : Form
         // Clear background
         g.Clear(Color.Black);
 
-        environment.displayEnvironment(g, new Vector2(ClientSize.Width, ClientSize.Height));
+        switch(this.environmentType)
+        {
+            case "bounce-ball":
+                this._BounceBallEnvironment.displayEnvironment(g, new Vector2(ClientSize.Width, ClientSize.Height));
+                break;
+            case "shape-test":
+                this._ShapeTestEnvironment.displayEnvironment(g, new Vector2(ClientSize.Width, ClientSize.Height));
+                break;
+        }
 
         this.displayPreview();
         
-        // this.environment.isUpdatingState = false;
+        if (this.environmentType == "shape-test")
+            this._ShapeTestEnvironment.isUpdatingState = false;
     }
 
     public void displayPreview()

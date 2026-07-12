@@ -44,7 +44,7 @@ namespace Environments
         public static byte ReadByte(NetworkStream s)
         {
             int v = s.ReadByte();
-            if (v < 0) throw new IOException("Disconnected");
+            // if (v < 0) throw new IOException("Disconnected");
             return (byte)v;
         }
 

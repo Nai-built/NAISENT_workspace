@@ -39,12 +39,12 @@ namespace Environments
             // new BounceBallState(this).asVisualInput();
 
             byte start = SharedUtil.ReadByte(stream);
-            if (start == 0) return;
+            if (start <= 0) return;
 
             while (true)
             {
                 byte want = SharedUtil.ReadByte(stream);
-                if (want == 0) continue;
+                if (want <= 0) continue;
 
                 if (this.hadRestartedPending)
                 {
@@ -72,7 +72,16 @@ namespace Environments
                 float[] visualInput = state.asVisualInput();
                 _Form.smallPreview.SetBitmap(_Form.downSampler.tensorView);
                 
-                SharedUtil.WriteFloatArray(stream, visualInput);
+                try
+                {
+                    SharedUtil.WriteFloatArray(stream, visualInput);
+                } catch (Exception e)
+                {
+                    Console.WriteLine($"Excpetion while sending visual input (most likely disconnected): {e.ToString()}");
+                    Console.WriteLine("Exiting BounceBall!");
+                    Application.Exit();
+                    return;
+                }
 
                 float[] actionValues = SharedUtil.ReadFloatArray(stream);
 
@@ -109,7 +118,7 @@ namespace Environments
                 SharedUtil.WriteFloatArray(stream, desiredAction);
                 
                 byte procceed = SharedUtil.ReadByte(stream);
-                if (procceed == 0) return;
+                if (procceed <= 0) return;
             }
         }
 

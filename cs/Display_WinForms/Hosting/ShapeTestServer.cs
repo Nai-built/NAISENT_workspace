@@ -36,7 +36,7 @@ namespace Environments
             using NetworkStream stream = client.GetStream();
 
             byte start = SharedUtil.ReadByte(stream);
-            if (start == 0) return;
+            if (start <= 0) return;
 
             while (true)
             {
@@ -57,10 +57,19 @@ namespace Environments
                 _Form.smallPreview.SetBitmap(_Form.downSampler.tensorView);
                 float[] desiredAction = ShapeTest_AbsoluteSupervision_Guide.Respond(this);
                 
-                SharedUtil.WriteFloatArray(stream, visualInput);
+                try
+                {
+                    SharedUtil.WriteFloatArray(stream, visualInput);
+                } catch (Exception e)
+                {
+                    Console.WriteLine($"Excpetion while sending visual input (most likely disconnected): {e.ToString()}");
+                    Console.WriteLine("Exiting ShapeTest!");
+                    Application.Exit();
+                    return;
+                }
 
                 byte getDesired = SharedUtil.ReadByte(stream);
-                if (getDesired == 0) return;
+                if (getDesired <= 0) return;
 
                 // float[] actionValues = SharedUtil.ReadFloatArray(stream);
 
@@ -69,7 +78,7 @@ namespace Environments
                 seenIt = true;
 
                 byte procceed = SharedUtil.ReadByte(stream);
-                if (procceed == 0) return;
+                if (procceed <= 0) return;
             }
         }
 

@@ -86,3 +86,14 @@ class NAISENT_Client:
     
     def proceed(self):
         self.socket.sendall(b'\x01')
+    
+    def terminate(self):
+        # 3. CRITICAL: Gracefully terminate connection
+        try:
+            # Sends a FIN packet. Client can no longer send, but can still read if server is flushing logs/buffers.
+            self.scoket.shutdown(socket.SHUT_WR) 
+        except Exception:
+            pass
+            
+        # 4. Deallocate the OS file descriptor resources
+        self.socket.close() 

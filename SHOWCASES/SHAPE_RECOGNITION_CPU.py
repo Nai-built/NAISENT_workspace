@@ -16,6 +16,38 @@ import random
 
 pre_string = "SHAPE_RECOGNITION"
 
+ARRAY_TYPE = "f"
+
+modelStorage = container(pre_string+"/MODEL_SHOWCASE")
+
+batchSize = 64
+
+# probably works, but just try to give it more training time
+
+# IT LEARNT!!!!!!!!
+# i am so glad and happy / proud like a father somehow
+# now.. we need to make it actually save our model so all that training doesn't go to waste each time [ DONE ]
+
+structureId = ONL.Build(ONL.CHAIN([
+    ONL.CONVOLUTIONAL(3, 32, kernelSize='5x5', channelSize='80x60', padding=2, stride=4
+                    , activation=ONL.ReLU(.001)),
+
+    ONL.CONVOLUTIONAL(32, 64, kernelSize='5x5', channelSize='20x15', padding=2, stride=4
+                    , activation=ONL.ReLU(.001)),
+        
+
+    ONL.DENSE(64*5*4, 256
+            , activation=ONL.ReLU(.001)),
+    ONL.DENSE(256, 256
+            , activation=ONL.ReLU(.001)),
+    ONL.DENSE(256, 3),
+]))
+
+try:
+    ONL.WriteStructureInfo(structureId, modelStorage.read())
+except:
+    print("FAILED TO LOAD MODEL!")
+
 import subprocess
 import ctypes
 
@@ -53,7 +85,7 @@ def wait_for_window(window_title, timeout=30):
 def collect_samples(n):
     # 1. Start the app in the background
     project_dir = "cs/Display_WinForms"
-    process = subprocess.Popen(["powershell", "-Command", "dotnet run"], cwd=project_dir)
+    process = subprocess.Popen(["powershell", "-Command", "dotnet run -- shape-test"], cwd=project_dir)
 
     # 2. Wait until the window exists (Change "Form1" to your actual WinForms Window Title)
     if wait_for_window("NAISENT ENVIRONMENT", timeout=45):
@@ -111,6 +143,17 @@ def collect_samples(n):
     def proceed():
         _socket.sendall(b'\x01')
 
+    def terminate():
+        # 3. CRITICAL: Gracefully terminate connection
+        try:
+            # Sends a FIN packet. Client can no longer send, but can still read if server is flushing logs/buffers.
+            _socket.shutdown(socket.SHUT_WR) 
+        except Exception:
+            pass
+            
+        # 4. Deallocate the OS file descriptor resources
+        _socket.close()
+
     samplesContainer = container(pre_string+"/SAMPLES")
     correctionsContainer = container(pre_string+"/CORRECTIONS")
 
@@ -125,14 +168,15 @@ def collect_samples(n):
         collectedSamples.extend(sample)
         collectedCorrections.extend(correction)
 
-        proceed()
+        if i < n-1:
+            proceed()
+
+    terminate()
 
     samplesContainer.write(collectedSamples.tolist())
     correctionsContainer.write(collectedCorrections.tolist())
 
-def train_model(n, e=1000, lr=0.001):
-    ARRAY_TYPE = "f"
-
+def train_model(n, epoch=1000, lr=0.001):
     samplesAmount = n-1
 
     sampleSize = 80*60*3
@@ -140,36 +184,6 @@ def train_model(n, e=1000, lr=0.001):
 
     collectedSamples = container(pre_string+"/SAMPLES").read()[0:(samplesAmount+1)*sampleSize]
     collectedCorrections = container(pre_string+"/CORRECTIONS").read()[0:(samplesAmount+1)*correctionSize]
-
-    modelStorage = container(pre_string+"/MODEL_SHOWCASE")
-
-    batchSize = 64
-
-    # probably works, but just try to give it more training time
-
-    # IT LEARNT!!!!!!!!
-    # i am so glad and happy / proud like a father somehow
-    # now.. we need to make it actually save our model so all that training doesn't go to waste each time [ DONE ]
-
-    structureId = ONL.Build(ONL.CHAIN([
-        ONL.CONVOLUTIONAL(3, 32, kernelSize='5x5', channelSize='80x60', padding=2, stride=4
-                        , activation=ONL.ReLU(.001)),
-
-        ONL.CONVOLUTIONAL(32, 64, kernelSize='5x5', channelSize='20x15', padding=2, stride=4
-                        , activation=ONL.ReLU(.001)),
-        
-
-        ONL.DENSE(64*5*4, 256
-                , activation=ONL.ReLU(.001)),
-        ONL.DENSE(256, 256
-                , activation=ONL.ReLU(.001)),
-        ONL.DENSE(256, 3),
-    ]))
-
-    try:
-        ONL.WriteStructureInfo(structureId, modelStorage.read())
-    except:
-        print("FAILED TO LOAD MODEL!")
 
     output = array(ARRAY_TYPE, [0.0] * batchSize * correctionSize)
 
@@ -226,7 +240,7 @@ def train_model(n, e=1000, lr=0.001):
         print(string)
 
     # runs a training session with the amount of steps as e (epochs)
-    for i in range(e):
+    for i in range(epoch):
         output = array(ARRAY_TYPE, [0.0] * batchSize * correctionSize)
 
         inputPropagation = array(ARRAY_TYPE, [0.0] * batchSize * sampleSize)
@@ -256,11 +270,12 @@ def train_model(n, e=1000, lr=0.001):
         print("<---" + i.__str__() + "--->")
         compareToString(output, selectedCorrections)
 
-        print("time passed:", (datetime.now()-startTIme).total_seconds(), "-", (datetime.now()-startStepTIme).total_seconds(), "step:", i+1, "/", e)
-
-    modelStorage.write(ONL.ReadStructureInfo(structureId))
+        print("time passed:", (datetime.now()-startTIme).total_seconds(), "-", (datetime.now()-startStepTIme).total_seconds(), "step:", i+1, "/", epoch)
 
 # CONCLUDED!
 
 collect_samples(1000)
-train_model(1000, 3000, 0.0002)
+train_model(1000, epoch=100, lr=0.0002)
+
+# save the model after training
+modelStorage.write(ONL.ReadStructureInfo(structureId))

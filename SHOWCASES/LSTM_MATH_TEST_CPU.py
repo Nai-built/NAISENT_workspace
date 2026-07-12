@@ -17,7 +17,23 @@ import time
 
 from array import array
 
+structureId = ONL.Build(ONL.CHAIN([
+    ONL.LSTM_RECURSIVE(2, 64, True),
+    ONL.LSTM_RECURSIVE(64, 64),
+
+    ONL.DENSE(64, 256
+            , activation=ONL.ReLU(0.001)),
+    ONL.DENSE(256, 1),
+]))
+
 pre_string = "MATH_TEST"
+
+modelContainer = container(pre_string+"/MODEL_3")
+
+try:
+    ONL.WriteStructureInfo(structureId, modelContainer.read())
+except:
+    print("FAILED TO LOAD MODEL")
 
 samplesInputContainer = container(pre_string+"/INPUT_SAMPLES")
 samplesLengthsContainer = container(pre_string+"/LENGTHS_SAMPLES")
@@ -94,18 +110,6 @@ def generate_samples(n=1000):
     correctionsContainer.write(corrections)
 
 def train_model(e=1000, lr=0.0005):
-
-    structureId = ONL.Build(ONL.CHAIN([
-        ONL.LSTM_RECURSIVE(2, 64, True),
-        ONL.LSTM_RECURSIVE(64, 64),
-
-        ONL.DENSE(64, 256
-                , activation=ONL.ReLU(0.001)),
-        ONL.DENSE(256, 1),
-    ]))
-
-    modelContainer = container(pre_string+"/MODEL_3")
-
     samplesInputData = samplesInputContainer.read()
 
     samplesData = samplesContainer.read()
@@ -144,11 +148,6 @@ def train_model(e=1000, lr=0.0005):
 
     lr = lr
 
-    try:
-        ONL.WriteStructureInfo(structureId, modelContainer.read())
-    except:
-        print("FAILED TO LOAD MODEL")
-
     startTime = datetime.now()
 
     epoch = e #20000 #100000
@@ -174,7 +173,8 @@ def train_model(e=1000, lr=0.0005):
                 list(zip(corrections.tolist(), outputs.tolist())), lr)
             print((datetime.now()-startTime).total_seconds(), (datetime.now()-startStepTime).total_seconds(), i+1, "/", epoch)
 
-    modelContainer.write(ONL.ReadStructureInfo(structureId))
-
-# generate_samples()
+generate_samples()
 train_model(e=pow(10, 4), lr=0.001)
+
+# save model after training
+modelContainer.write(ONL.ReadStructureInfo(structureId))
