@@ -58,7 +58,7 @@ So I've built 3 different libraries in 3 seperate stages:
     . Adam optimizer in Cuda Kernels
     . And obviously, Activation Functions (Cuda kernels)
     . First time adding the Residual mechanic as a visible variable in the Python side
-    . Almost all of these were made in ONL already, but it wasn't with Cuda for GPU and it was juggled up together awkwardly. I'm much more proud of this one
+    . Almost all of these were made in ONL already, but it wasn't with Cuda to use the GPU and it was juggled up together awkwardly. I'm much more proud of this one
     . Was when I made a proper tokenizer system in Python
 
 The libraries are made in C++
