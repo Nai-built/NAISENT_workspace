@@ -1,0 +1,105 @@
+What do bees do?<BOS>Bees fly from flower to flower and help plants make seeds. They also make honey.<EOS>
+Why are bees important?<BOS>Bees are important because they help plants make seeds. Without bees, many of the foods we eat would not grow.<EOS>
+What do bees make?<BOS>Bees make honey, which people have enjoyed for thousands of years.<EOS>
+What should you do when you see a bee?<BOS>It is best to leave it alone and let it do its work.<EOS>
+
+What covers most of the Earth?<BOS>The ocean covers most of the surface of the Earth.<EOS>
+What lives in the ocean?<BOS>Many kinds of fish and other animals live in the ocean. Some are small, and some are as big as a bus.<EOS>
+Have people sailed the ocean?<BOS>Yes, people have been sailing across the ocean for thousands of years.<EOS>
+
+What happens when it rains?<BOS>The ground becomes wet and soft. Plants drink the water through their roots and use it to grow.<EOS>
+Why do farmers like rain?<BOS>Rain helps the food grow, and food keeps people and animals alive.<EOS>
+What would happen without rain?<BOS>Without rain, the trees and grass would dry out and die.<EOS>
+
+What is a star?<BOS>A star is a sun, like our own, but so far away that it looks like a tiny point of light.<EOS>
+Why do stars look small?<BOS>Stars look small because they are very far away.<EOS>
+What did people do with the stars long ago?<BOS>Long ago, people looked up at the stars and made up stories about them. They drew lines between the stars and called them pictures in the sky.<EOS>
+
+What is a river?<BOS>A river starts high in the mountains and flows down to the sea.<EOS>
+What does a river pass through?<BOS>A river passes through forests, fields, and towns.<EOS>
+Why do people build bridges?<BOS>People build bridges over the river so they can cross to the other side.<EOS>
+
+What is winter?<BOS>Winter is the coldest time of the year. The days are shorter, and the nights are longer.<EOS>
+What happens to trees in winter?<BOS>The trees lose their leaves in winter.<EOS>
+What do animals do in winter?<BOS>Many animals sleep through the winter to save energy.<EOS>
+What comes after winter?<BOS>After winter comes spring, when everything starts to grow again.<EOS>
+
+How can you learn a new language?<BOS>If you practice every day, the words slowly become part of you.<EOS>
+Is learning a language easy?<BOS>At first, the words feel strange and hard to remember, but it gets easier with practice.<EOS>
+
+What can a book do?<BOS>A good book can take you anywhere. You can visit places you have never been and meet people who feel real.<EOS>
+Why do people love books?<BOS>Books can make you laugh and cry. They can teach you about the world and about yourself.<EOS>
+What does reading do for the mind?<BOS>Reading helps the mind stay strong, just like walking helps the body.<EOS>
+
+What is music?<BOS>Music is a language that everyone can understand.<EOS>
+Do you need words to enjoy music?<BOS>No, you do not need to know the words to feel what a song is saying.<EOS>
+How do people make music?<BOS>People make music using drums, strings, and their own voices.<EOS>
+
+What is a forest like?<BOS>A forest is full of life. Tall trees reach up to the sky, and their leaves make a green roof above your head.<EOS>
+How does walking in a forest feel?<BOS>Walking in a forest can make you feel calm and happy.<EOS>
+
+Why is water important?<BOS>Water is one of the most important things on Earth. People, animals, and plants all need water to live.<EOS>
+Where can you find water?<BOS>You can find water in rivers, lakes, and oceans. It also falls from the sky as rain and snow.<EOS>
+
+What are cats like?<BOS>Cats are quiet and careful animals. They sleep for much of the day and come alive at night.<EOS>
+What can a cat do?<BOS>A cat can jump very high and land without a sound.<EOS>
+Where do cats like to sit?<BOS>Many cats like to sit in a warm spot by a window and watch the world go by.<EOS>
+
+How do you learn something well?<BOS>To learn something well, you have to try and fail many times.<EOS>
+What should you do if something is hard?<BOS>Keep going and do not give up. Every time you try, you get a little better.<EOS>
+
+What do clouds look like?<BOS>Some clouds are big and white and look like soft cotton. Others are thin and stretch across the sky like long feathers.<EOS>
+What do clouds look like before a storm?<BOS>Before a storm, the clouds turn dark and gray.<EOS>
+
+What does a baker do?<BOS>A baker mixes flour, water, salt, and yeast in a big bowl and works the dough with their hands.<EOS>
+What is good about fresh bread?<BOS>The smell of fresh bread fills the whole street.<EOS>
+
+How can a walk help you?<BOS>A simple walk can change how you feel. Even ten minutes can help you feel lighter.<EOS>
+What should you notice on a walk?<BOS>Notice the trees, the sound of the birds, and the way the light falls on the ground.<EOS>
+
+What are mountains like?<BOS>Mountains rise high above the land. Their peaks are often covered in snow.<EOS>
+Why do people climb mountains?<BOS>People climb mountains for the view from the top. From up there, the world looks small and quiet.<EOS>
+
+What makes a good friend?<BOS>A good friend listens when you want to talk and sits quietly with you when you do not.<EOS>
+How many friends do you need?<BOS>You do not need many friends to be happy, but the ones you have are worth taking care of.<EOS>
+
+What is a garden like in spring?<BOS>The garden is full of color in the spring. Red tulips stand tall, and bees move from flower to flower.<EOS>
+
+What does kindness cost?<BOS>A kind word costs nothing, but it can mean a lot.<EOS>
+How can you be kind?<BOS>A smile or a simple hello can help. The world feels better when people are kind to each other.<EOS>
+
+What is the moon like at night?<BOS>The moon rises full and bright above the hills. Its soft light falls on the fields and makes the world look silver.<EOS>
+
+What makes good food?<BOS>Good food does not have to be hard to make. A few fresh things, cooked with care, can be better than a meal with many steps.<EOS>
+What are the best meals?<BOS>The best meals are often the simple ones shared with people you love.<EOS>
+
+How do you say hello in French?<BOS>In French, you say bonjour.<EOS>
+How do you say hello in Spanish?<BOS>In Spanish, you say hola.<EOS>
+What does a greeting mean?<BOS>A greeting is a small gift you give to another person. It says, I see you, and you matter.<EOS>
+
+Why are questions good?<BOS>A question is a door. When you ask a question, you open yourself up to new answers and new ideas.<EOS>
+Is it okay to not know something?<BOS>Yes, it is okay to not know something. The only silly question is the one you do not ask.<EOS>
+
+What happens in autumn?<BOS>The last leaves of autumn fall from the trees. The ground is covered in red, orange, and brown.<EOS>
+
+Is an ending bad?<BOS>Every ending is also a beginning. When one thing finishes, a new space opens up for something else.<EOS>
+
+What should you do when you are tired?<BOS>When you are tired, the best thing to do is rest. Your body needs sleep to feel strong again.<EOS>
+What helps before bed?<BOS>Some people like to read before bed, while others listen to soft music. A warm drink can also help.<EOS>
+
+What is hope?<BOS>Hope is a small thing, but it can carry a heavy load. Even on the hardest days, a little hope can keep you going.<EOS>
+Why should you hold on to hope?<BOS>Hold on to your hope, even when it feels small. It is stronger than you think.<EOS>
+
+Does every person have a story?<BOS>Yes, every person has a story. No story is more important than another.<EOS>
+Why should you listen to people?<BOS>When you listen to someone share their story, you learn something about the world and about yourself.<EOS>
+
+What is the city like in the morning?<BOS>Every morning, the city wakes up. Lights come on in the windows, and people pour out into the streets.<EOS>
+
+What can a simple moment be like?<BOS>A simple moment can be warm, even when the air is cold.<EOS>
+
+What does a dog love to do?<BOS>A dog loves to run after a ball and bring it back.<EOS>
+Where does a dog like to sleep?<BOS>A dog likes to lie on the rug by the fire and fall asleep.<EOS>
+
+What does a cat do in winter?<BOS>The cat sits on the windowsill and watches the snow fall. Inside, it is warm.<EOS>
+
+Why is it good to sit quietly?<BOS>A little quiet time each day can make everything else feel easier.<EOS>
